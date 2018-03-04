@@ -16,4 +16,7 @@ public interface IUserService {
     void createVerificationToken(User user, String token);
 
     VerificationToken getVerificationToken(String VerificationToken);
+
+
+    VerificationToken generateNewVerificationToken(String existingToken);
 }

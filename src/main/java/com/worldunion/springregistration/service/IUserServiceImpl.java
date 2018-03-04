@@ -65,6 +65,14 @@ public class IUserServiceImpl implements IUserService {
         return tokenRepository.findByToken(VerificationToken);
     }
 
+    @Override
+    public VerificationToken generateNewVerificationToken(String existingToken) {
+        VerificationToken token = getVerificationToken(existingToken);
+        token.updateToken();
+        tokenRepository.save(token);
+        return token;
+    }
+
     private boolean emailExist(String email) {
 
         User user = repository.findByEmail(email);
@@ -73,4 +81,6 @@ public class IUserServiceImpl implements IUserService {
         }
         return false;
     }
+
+
 }
